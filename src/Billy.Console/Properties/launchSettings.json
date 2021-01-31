@@ -2,7 +2,7 @@
   "profiles": {
     "Billy.Console": {
       "commandName": "Project",
-      "commandLineArgs": "c:\\ant\\Billy\\src\\Billy.Console\\bin\\Debug\\netcoreapp3.1\\file.txt",
+      "commandLineArgs": "c:\\ant\\Billy\\src\\Billy.Console\\bin\\Debug\\netcoreapp3.1\\aaa.txt",
       "environmentVariables": {
         "ENVIRONMENT": "local"
       }

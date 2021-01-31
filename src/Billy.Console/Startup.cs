@@ -2,7 +2,7 @@
 using System.IO;
 using Billy.Console.CommandManagers;
 using Billy.Console.Configuration;
-using Billy.Core.Files.Processors;
+using Billy.Core.Files.IoC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,7 +31,7 @@ namespace Billy.Console
                 .AddOptions()
                 .Configure<AppSettings>(configuration.GetSection("App"))
                 .AddSingleton<ICommandManager, CommandManager>()
-                .AddSingleton<ISearchProcessor, SearchProcessor>()
+                .AddBillyFiles()
                 .BuildServiceProvider();
         }
     }
