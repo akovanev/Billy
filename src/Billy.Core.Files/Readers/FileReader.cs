@@ -24,21 +24,29 @@ namespace Billy.Core.Files.Readers
                 //Reads data from the file.
                 int byteRead = bufferStream.Read(buffer);
 
-                //If the End File.
+                //If the End of File.
                 if (byteRead <= 0) yield break;
+
+                //Creates the memory stream to return the chunk.
+                using var memoryStream = new MemoryStream();
+
+                //Position 'End of File' means the last chunk here.
+                bool lastChunk = bufferStream.Position == fileStream.Length;
+
+                if (lastChunk)
+                {
+                    memoryStream.Write(buffer, 0, byteRead);
+                    yield return memoryStream.ToArray();
+                    yield break;
+                }
 
                 //Gets the actual chunk size.
                 //For utf8 and utf16 it does not include the bytes split in the end of the read data.
                 int chunkSize = GetActualChunkSize(buffer, byteRead);
 
-                //Creates the memory stream to return the chunk.
-                using var memoryStream = new MemoryStream();
-                
                 memoryStream.Write(buffer, 0, chunkSize);
                 
                 yield return memoryStream.ToArray();
-
-                if(bufferStream.Position == fileStream.Length) yield break;
 
                 //Calculates the actual shift.
                 int shift = fileInfo.BackShift + byteRead - chunkSize;
