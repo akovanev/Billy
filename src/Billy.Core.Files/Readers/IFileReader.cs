@@ -5,6 +5,6 @@ namespace Billy.Core.Files.Readers
 {
     public interface IFileReader
     {
-        IEnumerable<byte[]> ReadChunks(string path, ChunkInfo chunkInfo);
+        IEnumerable<byte[]> ReadChunks(string path, FileInfo fileInfo);
     }
 }

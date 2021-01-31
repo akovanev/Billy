@@ -12,7 +12,7 @@ namespace Billy.Core.Files.IoC
             services.AddScoped<ISearchProcessor, SearchProcessor>();
             services.AddScoped<IEncodingHelper, EncodingHelper>();
             services.AddScoped<IFileReaderFactory, FileReaderFactory>();
-            services.AddScoped<IFileReadBufferHelper, FileReadBufferHelper>();
+            services.AddScoped<IFileSearchHelper, FileSearchHelper>();
             return services;
         }
     }

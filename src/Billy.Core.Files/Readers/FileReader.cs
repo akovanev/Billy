@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Billy.Core.Files.Models;
 
 namespace Billy.Core.Files.Readers
 {
     public class FileReader : IFileReader
     {
-        public IEnumerable<byte[]> ReadChunks(string path, ChunkInfo chunkInfo)
+        public IEnumerable<byte[]> ReadChunks(string path, Models.FileInfo fileInfo)
         {
             //Opens the file stream.
             using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
 
             //Creates the buffered stream for reading a chunk.
-            var bufferStream = new BufferedStream(fileStream, chunkInfo.Size);
+            using var bufferStream = new BufferedStream(fileStream, fileInfo.ChunkSize);
 
             //Sets the file pointer to the start position specific for the detected encoding.
-            bufferStream.Position = chunkInfo.Preamble;
+            bufferStream.Position = fileInfo.Preamble;
 
             do
             {
@@ -42,7 +41,7 @@ namespace Billy.Core.Files.Readers
                 if(bufferStream.Position == fileStream.Length) yield break;
 
                 //Calculates the actual shift.
-                int shift = chunkInfo.BackShift + byteRead - chunkSize;
+                int shift = fileInfo.BackShift + byteRead - chunkSize;
 
                 //Returns the pointer to shift back.
                 bufferStream.Position -= GetActualChunkSize(buffer, shift);

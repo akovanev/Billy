@@ -9,18 +9,13 @@ namespace Billy.Core.Files.Processors
 {
     public class SearchProcessor : ISearchProcessor
     {
-        private readonly IEncodingHelper _encodingHelper;
         private readonly IFileReaderFactory _fileReaderFactory;
-        private readonly IFileReadBufferHelper _fileReadBufferHelper;
+        private readonly IFileSearchHelper _fileSearchHelper;
 
-        public SearchProcessor(
-            IEncodingHelper encodingHelper,
-            IFileReaderFactory fileReaderFactory,
-            IFileReadBufferHelper fileReadBufferHelper)
+        public SearchProcessor(IFileReaderFactory fileReaderFactory, IFileSearchHelper fileSearchHelper)
         {
-            _encodingHelper = encodingHelper;
             _fileReaderFactory = fileReaderFactory;
-            _fileReadBufferHelper = fileReadBufferHelper;
+            _fileSearchHelper = fileSearchHelper;
         }
 
         /// <summary>
@@ -28,34 +23,20 @@ namespace Billy.Core.Files.Processors
         /// </summary>
         public SearchSignatureResult CountOccurrences(SearchSignatureRequest request)
         {
-            //Detects the encoding before search.
-            var encoding = _encodingHelper.DetectEncoding(request.FileFullName);
+            //Gets file characteristics.
+            FileInfo fileInfo = _fileSearchHelper.GetFileInfo(request);
 
             //Gets the file reader for the specific encoding.
-            IFileReader fileReader = _fileReaderFactory.Get(encoding);
-
-            //Gets the number of bytes for the signature.
-            int signatureByteCount = encoding.GetByteCount(request.Signature);
-
-            //Gets the chunk size.
-            int chunkSize = _fileReadBufferHelper.GetBufferLength(signatureByteCount);
-
-            var chunkInfo = new ChunkInfo
-            {
-                Size = chunkSize,
-                Preamble = encoding.Preamble.Length,
-                BackShift = signatureByteCount
-            };
-
+            IFileReader fileReader = _fileReaderFactory.Get(fileInfo.Encoding);
 
             var occurrencesResult = new OccurrencesResult();
             int occurrencesCount = 0;
 
             //Iterates over the chunks.
-            foreach (byte[] chunk in fileReader.ReadChunks(request.FileFullName!, chunkInfo))
+            foreach (byte[] chunk in fileReader.ReadChunks(request.FileFullName!, fileInfo))
             {
                 //Converts array of chunk bytes to string.
-                string? chunkString = encoding.GetString(chunk);
+                string? chunkString = fileInfo.Encoding.GetString(chunk);
 
                 if (occurrencesResult.TailCount > 0)
                 {
