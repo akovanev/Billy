@@ -27,7 +27,7 @@ namespace Billy.Console.CommandManagers
                 .CreateLogger(nameof(CommandManager));
         }
 
-        public string ParseAndRun(string[] args)
+        public SearchSignatureResult ParseAndRun(string[] args)
         {
             SearchSignatureRequest request = InputConverter.ToSearchSignatureRequest(args);
 
@@ -37,9 +37,7 @@ namespace Billy.Console.CommandManagers
 
             SubscribeOnInvoker(invoker);
 
-            SearchSignatureResult result = invoker.ExecuteCommand(request);
-
-            return MessageHelper.GetSearchSignatureResultMessage(result);
+            return invoker.ExecuteCommand(request);
         }
 
         private void SubscribeOnInvoker<TRequest, TResponse>(CommandInvoker<TRequest, TResponse> invoker)

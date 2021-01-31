@@ -32,7 +32,7 @@ namespace Billy.Core.Files.Helpers
 
         internal int GetBufferLength(int signatureLength)
         {
-            const int expectedBufferSize = 4;
+            const int expectedBufferSize = 4096;
             const int extendingSizeCoefficient = 2;
 
             int extendedLength = signatureLength * extendingSizeCoefficient;

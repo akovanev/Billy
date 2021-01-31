@@ -17,9 +17,13 @@ namespace Billy.IntegrationTests.Files
 
         public void GenerateFiles(bool rewrite)
         {
+            string absolutePath = Path.GetFullPath(_settings.TargetFolder);
+
+            if (!Directory.Exists(absolutePath))
+                Directory.CreateDirectory(absolutePath);
+
             foreach (var file in _settings.Files)
             {
-                string absolutePath = Path.GetFullPath(_settings.TargetFolder);
                 string filepath = Path.Combine(absolutePath, file.FileName);
 
                 bool fileExists = File.Exists(filepath);
