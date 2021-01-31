@@ -5,7 +5,7 @@ namespace Billy.Core.Files.Readers
 {
     public class FileReader : IFileReader
     {
-        public IEnumerable<byte[]> ReadChunks(string path, Models.FileInfo fileInfo)
+        public virtual IEnumerable<byte[]> ReadChunks(string path, Models.FileInfo fileInfo)
         {
             //Opens the file stream.
             using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);

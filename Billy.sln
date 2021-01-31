@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Core", "src\Billy.Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{19A7ED6E-E4DA-49BF-9C10-2B30199CE8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Utilities.FileGenerator", "tests\Billy.Utilities.FileGenerator\Billy.Utilities.FileGenerator.csproj", "{7CE61C8A-F515-4E2A-9084-19D334907332}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Utilities.FileGenerator", "tests\Billy.Utilities.FileGenerator\Billy.Utilities.FileGenerator.csproj", "{7CE61C8A-F515-4E2A-9084-19D334907332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.IntegrationTests", "tests\Billy.IntegrationTests\Billy.IntegrationTests.csproj", "{B97D82D2-6825-4661-860B-16864ABFD04F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.IntegrationTests", "tests\Billy.IntegrationTests\Billy.IntegrationTests.csproj", "{B97D82D2-6825-4661-860B-16864ABFD04F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Core.Files.Tests", "tests\Billy.Core.Files.Tests\Billy.Core.Files.Tests.csproj", "{D59A4DF3-4F66-4FA8-8F7B-80CDA584F42F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{B97D82D2-6825-4661-860B-16864ABFD04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B97D82D2-6825-4661-860B-16864ABFD04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B97D82D2-6825-4661-860B-16864ABFD04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59A4DF3-4F66-4FA8-8F7B-80CDA584F42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59A4DF3-4F66-4FA8-8F7B-80CDA584F42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59A4DF3-4F66-4FA8-8F7B-80CDA584F42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59A4DF3-4F66-4FA8-8F7B-80CDA584F42F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{07D54E33-E8F9-4BDC-A480-99F7077E2A69} = {DD801BC6-5DE3-4CC1-92AA-BAC248CAB867}
 		{7CE61C8A-F515-4E2A-9084-19D334907332} = {19A7ED6E-E4DA-49BF-9C10-2B30199CE8C8}
 		{B97D82D2-6825-4661-860B-16864ABFD04F} = {19A7ED6E-E4DA-49BF-9C10-2B30199CE8C8}
+		{D59A4DF3-4F66-4FA8-8F7B-80CDA584F42F} = {19A7ED6E-E4DA-49BF-9C10-2B30199CE8C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95EEEC01-33F5-4C7E-9179-B3EF7613DF9A}

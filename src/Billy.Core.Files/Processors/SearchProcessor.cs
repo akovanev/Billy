@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Billy.Core.Files.Helpers;
 using Billy.Core.Files.Models;
 using Billy.Core.Files.Readers;
