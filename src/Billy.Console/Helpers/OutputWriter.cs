@@ -7,6 +7,8 @@ namespace Billy.Console.Helpers
     /// </summary>
     internal class OutputWriter
     {
+        private static readonly object LockObject = new object();
+
         public static void Print(string? message)
             => PrintInternal(message, ConsoleColor.DarkYellow);
 
@@ -15,10 +17,13 @@ namespace Billy.Console.Helpers
 
         private static void PrintInternal(string? message, ConsoleColor color)
         {
-            var oldColor = System.Console.ForegroundColor;
-            System.Console.ForegroundColor = color;
-            System.Console.WriteLine(message);
-            System.Console.ForegroundColor = oldColor;
+            lock (LockObject)
+            {
+                var oldColor = System.Console.ForegroundColor;
+                System.Console.ForegroundColor = color;
+                System.Console.WriteLine(message);
+                System.Console.ForegroundColor = oldColor;
+            }
         }
     }
 }
