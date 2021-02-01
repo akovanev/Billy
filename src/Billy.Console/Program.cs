@@ -16,7 +16,7 @@ namespace Billy.Console
             }
             catch (Exception ex)
             {
-                OutputWriter.Print(MessageHelper.GetErrorMessage(ex.Message));
+                OutputWriter.PrintError(MessageHelper.GetErrorMessage(ex.Message));
             }
         }
 
