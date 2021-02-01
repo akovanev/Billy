@@ -25,7 +25,7 @@ namespace Billy.Core.Files.Readers
                 int byteRead = bufferStream.Read(buffer);
 
                 //If the End of File.
-                if (byteRead <= 0) yield break;
+                if (byteRead <= 0) yield break; //Breaks the loop execution.
 
                 //Creates the memory stream to return the chunk.
                 using var memoryStream = new MemoryStream();
@@ -37,7 +37,7 @@ namespace Billy.Core.Files.Readers
                 {
                     memoryStream.Write(buffer, 0, byteRead);
                     yield return memoryStream.ToArray();
-                    yield break;
+                    yield break; //Breaks the loop execution.
                 }
 
                 //Gets the actual chunk size.

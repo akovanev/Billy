@@ -3,6 +3,9 @@ using Billy.Core.Files.Models;
 
 namespace Billy.Console.Helpers
 {
+    /// <summary>
+    /// Creates messages for the application run output.
+    /// </summary>
     internal class MessageHelper
     {
         public static string GetSearchSignatureResultMessage(SearchSignatureResult? result)

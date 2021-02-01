@@ -35,6 +35,7 @@ namespace Billy.Core.Files.Helpers
             const int expectedBufferSize = 4096;
             const int extendingSizeCoefficient = 2;
 
+            //Extends the chunks size for large signatures.
             int extendedLength = signatureLength * extendingSizeCoefficient;
 
             return extendedLength < expectedBufferSize

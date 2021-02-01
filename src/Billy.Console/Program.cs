@@ -22,6 +22,7 @@ namespace Billy.Console
 
         public static string Run(string[] args)
         {
+            
             ServiceProvider serviceProvider = Startup.Configure();
 
             var commandManager = serviceProvider.GetService<ICommandManager>();

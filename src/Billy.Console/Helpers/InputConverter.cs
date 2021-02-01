@@ -5,6 +5,9 @@ using Billy.Core.Files.Models;
 
 namespace Billy.Console.Helpers
 {
+    /// <summary>
+    /// Validates the application run input and converts it to the specified Request object.
+    /// </summary>
     internal class InputConverter
     {
         public static SearchSignatureRequest ToSearchSignatureRequest(string[] args)

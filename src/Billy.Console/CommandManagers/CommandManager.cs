@@ -11,6 +11,9 @@ using Microsoft.Extensions.Options;
 
 namespace Billy.Console.CommandManagers
 {
+    /// <summary>
+    /// Parses and executes the command got from the application run input.
+    /// </summary>
     internal class CommandManager : ICommandManager
     {
         private readonly ISearchProcessor _searchProcessor;
@@ -44,6 +47,7 @@ namespace Billy.Console.CommandManagers
         {
             if (_settings.Value.LogCommandExecutionTime)
             {
+                //Uses Reactive Extensions to log the invoker OnExecuted event.
                 var sequence = Observable.FromEventPattern<CommandArgs>(
                     handler => invoker.OnExecuted += handler,
                     handler => invoker.OnExecuted -= handler);
